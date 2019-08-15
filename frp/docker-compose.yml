@@ -1,0 +1,23 @@
+version: '3'
+services:
+  frps:
+    image: zhenshaw/frp
+    container_name: frps
+    restart: always
+    ports:
+      - 7000:7000
+      - 7500:7500
+      - 8070:80
+    volumes:
+      - $PWD/conf:/conf
+    command: "frps"
+  
+  frpc:
+    network_mode: host
+    image: zhenshaw/frp
+    container_name: frpc
+    restart: always
+    volumes:
+      - $PWD/conf:/conf
+    command: "frpc"
+
